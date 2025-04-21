@@ -82,9 +82,6 @@ type1.error <- type1.count/n.simulations
 # preform simulation study for assessment of robustness of T test
 n <- 15
 n.simulations <- 10000
-
-## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##
-
 # Beta (10,2)
 true.mean1 <- 10/(10+2)
 # Beta (2,10)
@@ -154,3 +151,11 @@ for (i in 1:n.simulations){
   
 }
 
+## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##
+type1.proportion.left <- leftcount/n.simulations
+
+## Part B: Proportion of Time we make a Type 1 error for right-tailed test ##
+type1.proportion.right <- rightcount/n.simulations
+
+## Part C: Proportion of Time we make a Type 1 error for two-tailed test ##
+type1.proportion.dual <- dualcount/n.simulations
