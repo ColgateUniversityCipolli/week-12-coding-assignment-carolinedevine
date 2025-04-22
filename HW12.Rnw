@@ -130,7 +130,7 @@ print(table1,
       caption.placement = "bottom")
 @
 A Type 1 error is when when we incorrectly find statistically discernible support for the alternative hypothesis. This means that the null hypothesis is true and we reject the null hypothesis in favor of the alternative. The researchers assume the null hypothesis to be $\mu_{0}$ = 0. For a Type 1 error to occur in this experiment, we want to reject the null when it is actually true, meaning the true mean is 0 but our simulated mean does not reflect that. The Type 1 error is larger when checked at time 20 with 4.7\% of simulations incorrectly reject the null on the initial ``peek". The Type 1 error for the end of the experiment at time 30 where there was not discernible support for the alternative at time 20 and discernible support for the alternative at time 30 (Type 1 Error) is smaller than initial ``peek": 2.4\%.
-We also found that in 92.9\% of the simulations, there is not a Type 1 Error. The overall Type 1 error rate is high, at 7.1\%, which is higher than 5\%, indicating that Type 1 error is inflated when the reserachers ``peek" at the data.
+We also found that in 92.9\% of the simulations, there is not a Type 1 Error. The overall Type 1 error rate is high, at 7.1\%, which is higher than 5\%, indicating that Type 1 error is inflated when the researchers ``peek" at the data.
 
   \item \textbf{Optional Challenge:} Can you find a value of $\alpha<0.05$ that yields a 
   Type I error rate of 0.05?
@@ -266,10 +266,7 @@ print(table,
       size = "small", 
       caption.placement = "bottom")
 @
-Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. 
-Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. 
-Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. 
-Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
+Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
   \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -189,7 +189,7 @@ For statistically discernible support of the alternative hypothesis, we would ne
 \end{kframe}
 \end{knitrout}
 % latex table generated in R 4.4.2 by xtable 1.8-4 package
-% Mon Apr 21 20:58:22 2025
+% Mon Apr 21 21:05:56 2025
 \begin{table}[H]
 \centering
 \begingroup\small
@@ -197,10 +197,10 @@ For statistically discernible support of the alternative hypothesis, we would ne
   \hline
 Result & Proportion \\ 
   \hline
-Type 1 Error Proportion (20) & 0.06 \\ 
-  Fail to reject null at time 20, Discernible support Ha at time 30 & 0.04 \\ 
-  No Type 1 Error Proportion (30) & 0.91 \\ 
-  Overall Type 1 Error & 0.09 \\ 
+Type 1 Error Proportion (20) & 0.05 \\ 
+  Fail to reject null at time 20, Discernible support Ha at time 30 & 0.03 \\ 
+  No Type 1 Error Proportion (30) & 0.92 \\ 
+  Overall Type 1 Error & 0.08 \\ 
    \hline
 \end{tabular}
 \endgroup
@@ -209,7 +209,7 @@ Type 1 Error Proportion (20) & 0.06 \\
 \end{table}
 
 A Type 1 error is when when we incorrectly find statistically discernible support for the alternative hypothesis. This means that the null hypothesis is true and we reject the null hypothesis in favor of the alternative. The researchers assume the null hypothesis to be $\mu_{0}$ = 0. For a Type 1 error to occur in this experiment, we want to reject the null when it is actually true, meaning the true mean is 0 but our simulated mean does not reflect that. The Type 1 error is larger when checked at time 20 with 4.7\% of simulations incorrectly reject the null on the initial ``peek". The Type 1 error for the end of the experiment at time 30 where there was not discernible support for the alternative at time 20 and discernible support for the alternative at time 30 (Type 1 Error) is smaller than initial ``peek": 2.4\%.
-We also found that in 92.9\% of the simulations, there is not a Type 1 Error. The overall Type 1 error rate is high, at 7.1\%, which is higher than 5\%, indicating that Type 1 error is inflated when the reserachers ``peek" at the data.
+We also found that in 92.9\% of the simulations, there is not a Type 1 Error. The overall Type 1 error rate is high, at 7.1\%, which is higher than 5\%, indicating that Type 1 error is inflated when the researchers ``peek" at the data.
 
   \item \textbf{Optional Challenge:} Can you find a value of $\alpha<0.05$ that yields a 
   Type I error rate of 0.05?
@@ -312,7 +312,7 @@ We also found that in 92.9\% of the simulations, there is not a Type 1 Error. Th
 \hldef{(}\hlkwd{round}\hldef{(type1.proportion.left,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0300 0.0748 0.0494
+## [1] 0.0316 0.0851 0.0491
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -327,7 +327,7 @@ We make a Type 1 Error for the left-tailed test 3.07\% (Beta(10,2)), 7.91\% (Bet
 \hldef{(}\hlkwd{round}\hldef{(type1.proportion.right,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0863 0.0310 0.0479
+## [1] 0.0789 0.0311 0.0495
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -342,7 +342,7 @@ We make a Type 1 Error for the right-tailed test 8.92\% (Beta(10,2)), 2.75\% (Be
 \hldef{(}\hlkwd{round}\hldef{(type1.proportion.dual,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0652 0.0575 0.0499
+## [1] 0.0625 0.0666 0.0514
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -367,7 +367,7 @@ We make a Type 1 Error for the two-tailed test 6.63\% (Beta(10,2)), 6.03\% (Beta
 \end{kframe}
 \end{knitrout}
 % latex table generated in R 4.4.2 by xtable 1.8-4 package
-% Mon Apr 21 20:58:25 2025
+% Mon Apr 21 21:05:58 2025
 \begin{table}[H]
 \centering
 \begingroup\small
@@ -375,8 +375,8 @@ We make a Type 1 Error for the two-tailed test 6.63\% (Beta(10,2)), 6.03\% (Beta
   \hline
 Distribution & Left-Tailed Test & Right-Tailed Test & Two-Tailed Test \\ 
   \hline
-Beta(10,2) & 0.03 & 0.09 & 0.07 \\ 
-  Beta(2,10) & 0.07 & 0.03 & 0.06 \\ 
+Beta(10,2) & 0.03 & 0.08 & 0.06 \\ 
+  Beta(2,10) & 0.09 & 0.03 & 0.07 \\ 
   Beta(10,10) & 0.05 & 0.05 & 0.05 \\ 
    \hline
 \end{tabular}
@@ -385,10 +385,7 @@ Beta(10,2) & 0.03 & 0.09 & 0.07 \\
 \label{tab:distresults}
 \end{table}
 
-Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. 
-Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. 
-Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. 
-Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
+Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
   \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
