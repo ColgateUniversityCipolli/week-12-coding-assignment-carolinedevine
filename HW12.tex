@@ -1,0 +1,393 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[margin=1.0in]{geometry} % To set margins
+\usepackage{amsmath}  % This allows me to use the align functionality.
+                      % If you find yourself trying to replicate
+                      % something you found online, ensure you're
+                      % loading the necessary packages!
+\usepackage{amsfonts} % Math font
+\usepackage{fancyvrb}
+\usepackage{hyperref} % For including hyperlinks
+\usepackage[shortlabels]{enumitem}% For enumerated lists with labels specified
+                                  % We had to run tlmgr_install("enumitem") in R
+\usepackage{float}    % For telling R where to put a table/figure
+\usepackage{natbib}        %For the bibliography
+\bibliographystyle{apalike}%For the bibliography
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item A group of researchers is running an experiment over the course of 30 months, 
+with a single observation collected at the end of each month. Let $X_1, ..., X_{30}$
+denote the observations for each month. From prior studies, the researchers know that
+\[X_i \sim f_X(x),\]
+but the mean $\mu_X$ is unknown, and they wish to conduct the following test
+\begin{align*}
+H_0&: \mu_X = 0\\
+H_a&: \mu_X > 0.
+\end{align*}
+At month $k$, they have accumulated data $X_1, ..., X_k$ and they have the 
+$t$-statistic
+\[T_k = \frac{\bar{X} - 0}{S_k/\sqrt{n}}.\]
+The initial plan was to test the hypotheses after all data was collected (at the 
+end of month 30), at level $\alpha=0.05$. However, conducting the experiment is 
+expensive, so the researchers want to ``peek" at the data at the end of month 20 
+to see if they can stop it early. That is, the researchers propose to check 
+whether $t_{20}$ provides statistically discernible support for the alternative. 
+If it does, they will stop the experiment early and report support for the 
+researcher's alternative hypothesis. If it does not, they will continue to month 
+30 and test whether $t_{30}$ provides statistically discernible support for the
+alternative.
+
+\begin{enumerate}
+  \item What values of $t_{20}$ provide statistically discernible support for the
+  alternative hypothesis?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hldef{(tidyverse)}
+\hldef{n} \hlkwb{<-} \hlnum{20}
+\hldef{(val.20} \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{0.95}\hldef{,}\hlkwc{df} \hldef{= n}\hlopt{-}\hlnum{1}\hldef{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.729133
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+To produce a one-sided p-value that is below 0.05 such that it provides statistically discernible support for the alternative hypothesis, the value of $t_{20}$ would be 1.729 or greater. Since the researchers set up a right-tailed test, to reject the null, we need to find the t-statistic that is equal to 1.73 or larger, meaning beyond 0.05. 
+  \item What values of $t_{30}$ provide statistically discernible support for the
+  alternative hypothesis?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{n2} \hlkwb{<-} \hlnum{30}
+\hldef{(val.30} \hlkwb{<-} \hlkwd{qt}\hldef{(}\hlnum{0.95}\hldef{,}\hlkwc{df} \hldef{= n2}\hlopt{-}\hlnum{1}\hldef{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.699127
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+For statistically discernible support of the alternative hypothesis, we would need the t-test statistic to be 1.699 or larger.
+  \item Suppose $f_X(x)$ is a Laplace distribution with $a=0$ and $b=4.0$.
+  Conduct a simulation study to assess the Type I error rate of this approach.\\
+  \textbf{Note:} You can use the \texttt{rlaplace()} function from the \texttt{VGAM}
+  package for \texttt{R} \citep{VGAM}.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Part C: Laplace distribution a = 0, b = 4.0 ##}
+\hlkwd{library}\hldef{(VGAM)}
+\hldef{a} \hlkwb{<-} \hlnum{0}
+\hldef{b} \hlkwb{<-} \hlnum{4.0}
+\hldef{mu0} \hlkwb{<-} \hlnum{0}
+\hldef{n.simulations} \hlkwb{<-} \hlnum{1000}
+\hldef{type1.count.20} \hlkwb{<-} \hlnum{0}
+\hldef{type1.count.30} \hlkwb{<-} \hlnum{0}
+\hldef{no.type1} \hlkwb{<-} \hlnum{0}
+
+\hlkwa{for} \hldef{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hldef{n.simulations)\{}
+  \hldef{simulations} \hlkwb{<-} \hlkwd{rlaplace}\hldef{(}\hlkwc{n} \hldef{=} \hlnum{30}\hldef{,} \hlkwc{location} \hldef{= a,} \hlkwc{scale} \hldef{= b)}
+
+  \hlcom{# Up to 20 months}
+  \hldef{first.20} \hlkwb{<-} \hldef{simulations[}\hlnum{1}\hlopt{:}\hlnum{20}\hldef{]}
+  \hldef{t} \hlkwb{<-} \hlkwd{t.test}\hldef{(first.20,}
+              \hlkwc{mu} \hldef{= mu0,}
+              \hlkwc{alternative} \hldef{=} \hlsng{"greater"}\hldef{)}
+
+  \hlkwa{if} \hldef{(t}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)\{}
+    \hldef{type1.count.20} \hlkwb{<-} \hldef{type1.count.20} \hlopt{+} \hlnum{1}
+  \hldef{\}}\hlkwa{else}\hldef{\{}
+
+    \hlcom{# 30 months}
+    \hldef{t.2} \hlkwb{<-} \hlkwd{t.test}\hldef{(simulations,}
+                  \hlkwc{mu} \hldef{= mu0,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"greater"}\hldef{)}
+    \hlkwa{if} \hldef{(t.2}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)\{}
+      \hldef{type1.count.30} \hlkwb{<-} \hldef{type1.count.30} \hlopt{+} \hlnum{1}
+    \hldef{\}} \hlkwa{else} \hldef{\{}
+      \hldef{no.type1} \hlkwb{<-} \hldef{no.type1} \hlopt{+} \hlnum{1}
+    \hldef{\}}
+  \hldef{\}}
+\hldef{\}}
+\hldef{proportion.20} \hlkwb{<-} \hldef{type1.count.20}\hlopt{/}\hldef{n.simulations}
+\hldef{proportion.30} \hlkwb{<-} \hldef{type1.count.30}\hlopt{/}\hldef{n.simulations}
+\hldef{no.type1.error} \hlkwb{<-} \hldef{no.type1}\hlopt{/}\hldef{n.simulations}
+\hldef{type1.error} \hlkwb{<-} \hldef{(type1.count.20} \hlopt{+} \hldef{type1.count.30)}\hlopt{/}\hldef{n.simulations}
+
+\hldef{type1.error.results} \hlkwb{<-} \hlkwd{tibble}\hldef{(}
+  \hlkwc{Result} \hldef{=} \hlkwd{c}\hldef{(}\hlsng{"Type 1 Error Proportion (20)"}\hldef{,}
+             \hlsng{"Fail to reject null at time 20, Discernible support Ha at time 30"}\hldef{,}
+             \hlsng{"No Type 1 Error Proportion (30)"}\hldef{,}
+             \hlsng{"Overall Type 1 Error"}
+             \hldef{),}
+  \hlkwc{Proportion} \hldef{=} \hlkwd{c}\hldef{(}\hlkwd{round}\hldef{(proportion.20,}\hlnum{3}\hldef{),}
+                 \hlkwd{round}\hldef{(proportion.30,}\hlnum{3}\hldef{),}
+                 \hlkwd{round}\hldef{(no.type1.error,}\hlnum{3}\hldef{),}
+                 \hlkwd{round}\hldef{(type1.error,}\hlnum{3}\hldef{))}
+\hldef{)}
+\hlkwd{library}\hldef{(xtable)}
+\hldef{table1} \hlkwb{<-} \hlkwd{xtable}\hldef{(type1.error.results,}
+                 \hlkwc{caption} \hldef{=} \hlsng{"Type 1 Error Proportions"}\hldef{,}
+                 \hlkwc{label} \hldef{=} \hlsng{"tab:type1error"}\hldef{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Mon Apr 21 20:43:23 2025
+\begin{table}[H]
+\centering
+\begingroup\small
+\begin{tabular}{lr}
+  \hline
+Result & Proportion \\ 
+  \hline
+Type 1 Error Proportion (20) & 0.05 \\ 
+  Fail to reject null at time 20, Discernible support Ha at time 30 & 0.03 \\ 
+  No Type 1 Error Proportion (30) & 0.92 \\ 
+  Overall Type 1 Error & 0.08 \\ 
+   \hline
+\end{tabular}
+\endgroup
+\caption{Type 1 Error Proportions} 
+\label{tab:type1error}
+\end{table}
+
+A Type 1 error is when when we incorrectly find statistically discernible support for the alternative hypothesis. This means that the null hypothesis is true and we reject the null hypothesis in favor of the alternative. The researchers assume the null hypothesis to be $\mu_{0}$ = 0. For a Type 1 error to occur in this experiment, we want to reject the null when it is actually true, meaning the true mean is 0 but our simulated mean does not reflect that. The Type 1 error is larger when checked at time 20 with 4.7\% of simulations incorrectly reject the null on the initial ``peek". The Type 1 error for the end of the experiment at time 30 where there was not discernible support for the alternative at time 20 and discernible support for the alternative at time 30 (Type 1 Error) is smaller than initial ``peek": 2.4\%.
+We also found that in 92.9\% of the simulations, there is not a Type 1 Error. The overall Type 1 error rate is high, at 7.1\%, which is higher than 5\%, indicating that Type 1 error is inflated when the reserachers ``peek" at the data.
+
+  \item \textbf{Optional Challenge:} Can you find a value of $\alpha<0.05$ that yields a 
+  Type I error rate of 0.05?
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \item Perform a simulation study to assess the robustness of the $T$ test. 
+  Specifically, generate samples of size $n=15$ from the Beta(10,2), Beta(2,10), 
+  and Beta(10,10) distributions and conduct the following hypothesis tests against 
+  the actual mean for each case (e.g., $\frac{10}{10+2}$, $\frac{2}{10+2}$, and 
+  $\frac{10}{10+10}$). 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+  \hlcom{# preform simulation study for assessment of robustness of T test}
+\hldef{n} \hlkwb{<-} \hlnum{15}
+\hldef{n.simulations} \hlkwb{<-} \hlnum{10000}
+\hlcom{# Beta (10,2)}
+\hldef{true.mean1} \hlkwb{<-} \hlnum{10}\hlopt{/}\hldef{(}\hlnum{10}\hlopt{+}\hlnum{2}\hldef{)}
+\hlcom{# Beta (2,10)}
+\hldef{true.mean2} \hlkwb{<-} \hlnum{2}\hlopt{/}\hldef{(}\hlnum{2}\hlopt{+}\hlnum{10}\hldef{)}
+\hlcom{# Beta (10,10)}
+\hldef{true.mean3} \hlkwb{<-} \hlnum{10}\hlopt{/}\hldef{(}\hlnum{10}\hlopt{+}\hlnum{10}\hldef{)}
+
+\hlcom{# Counters}
+\hldef{leftcount} \hlkwb{<-} \hlkwd{c}\hldef{(}\hlnum{0}\hldef{,}\hlnum{0}\hldef{,}\hlnum{0}\hldef{)}
+\hldef{rightcount} \hlkwb{<-} \hlkwd{c}\hldef{(}\hlnum{0}\hldef{,}\hlnum{0}\hldef{,}\hlnum{0}\hldef{)}
+\hldef{dualcount} \hlkwb{<-} \hlkwd{c}\hldef{(}\hlnum{0}\hldef{,}\hlnum{0}\hldef{,}\hlnum{0}\hldef{)}
+
+\hlkwa{for} \hldef{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hldef{n.simulations)\{}
+  \hldef{beta1} \hlkwb{<-} \hlkwd{rbeta}\hldef{(n,} \hlnum{10}\hldef{,} \hlnum{2}\hldef{)}
+  \hldef{beta2} \hlkwb{<-} \hlkwd{rbeta}\hldef{(n,} \hlnum{2}\hldef{,} \hlnum{10}\hldef{)}
+  \hldef{beta3} \hlkwb{<-} \hlkwd{rbeta}\hldef{(n,} \hlnum{10}\hldef{,} \hlnum{10}\hldef{)}
+
+  \hlcom{# Left-Tailed Test}
+  \hldef{left1} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta1,}
+                  \hlkwc{mu} \hldef{= true.mean1,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"less"}\hldef{)}
+  \hldef{left2} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta2,}
+                  \hlkwc{mu} \hldef{= true.mean2,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"less"}\hldef{)}
+  \hldef{left3} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta3,}
+                  \hlkwc{mu} \hldef{= true.mean3,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"less"}\hldef{)}
+
+  \hlcom{# Type 1 Error Count}
+  \hldef{leftcount[}\hlnum{1}\hldef{]} \hlkwb{<-} \hldef{leftcount[}\hlnum{1}\hldef{]} \hlopt{+} \hldef{(left1}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{leftcount[}\hlnum{2}\hldef{]} \hlkwb{<-} \hldef{leftcount[}\hlnum{2}\hldef{]} \hlopt{+} \hldef{(left2}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{leftcount[}\hlnum{3}\hldef{]} \hlkwb{<-} \hldef{leftcount[}\hlnum{3}\hldef{]} \hlopt{+} \hldef{(left3}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+
+
+  \hlcom{# Right-Tailed Test}
+  \hldef{right1} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta1,}
+                  \hlkwc{mu} \hldef{= true.mean1,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"greater"}\hldef{)}
+  \hldef{right2} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta2,}
+                  \hlkwc{mu} \hldef{= true.mean2,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"greater"}\hldef{)}
+  \hldef{right3} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta3,}
+                  \hlkwc{mu} \hldef{= true.mean3,}
+                  \hlkwc{alternative} \hldef{=} \hlsng{"greater"}\hldef{)}
+
+  \hlcom{# Type 1 Error Count}
+  \hldef{rightcount[}\hlnum{1}\hldef{]} \hlkwb{<-} \hldef{rightcount[}\hlnum{1}\hldef{]} \hlopt{+} \hldef{(right1}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{rightcount[}\hlnum{2}\hldef{]} \hlkwb{<-} \hldef{rightcount[}\hlnum{2}\hldef{]} \hlopt{+} \hldef{(right2}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{rightcount[}\hlnum{3}\hldef{]} \hlkwb{<-} \hldef{rightcount[}\hlnum{3}\hldef{]} \hlopt{+} \hldef{(right3}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+
+
+  \hlcom{# Two-Tailed Test}
+  \hldef{dual1} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta1,}
+                   \hlkwc{mu} \hldef{= true.mean1,}
+                   \hlkwc{alternative} \hldef{=} \hlsng{"two.sided"}\hldef{)}
+  \hldef{dual2} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta2,}
+                   \hlkwc{mu} \hldef{= true.mean2,}
+                   \hlkwc{alternative} \hldef{=} \hlsng{"two.sided"}\hldef{)}
+  \hldef{dual3} \hlkwb{<-} \hlkwd{t.test}\hldef{(beta3,}
+                   \hlkwc{mu} \hldef{= true.mean3,}
+                   \hlkwc{alternative} \hldef{=} \hlsng{"two.sided"}\hldef{)}
+
+  \hlcom{# Type 1 Error Count}
+  \hldef{dualcount[}\hlnum{1}\hldef{]} \hlkwb{<-} \hldef{dualcount[}\hlnum{1}\hldef{]} \hlopt{+} \hldef{(dual1}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{dualcount[}\hlnum{2}\hldef{]} \hlkwb{<-} \hldef{dualcount[}\hlnum{2}\hldef{]} \hlopt{+} \hldef{(dual2}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+  \hldef{dualcount[}\hlnum{3}\hldef{]} \hlkwb{<-} \hldef{dualcount[}\hlnum{3}\hldef{]} \hlopt{+} \hldef{(dual3}\hlopt{$}\hldef{p.value} \hlopt{<} \hlnum{0.05}\hldef{)}
+
+\hldef{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  \begin{enumerate}
+    \item What proportion of the time do we make an error of Type I for a
+    left-tailed test?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##}
+\hldef{(type1.proportion.left} \hlkwb{<-} \hldef{leftcount}\hlopt{/}\hldef{n.simulations)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.0273 0.0735 0.0507
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+    \item What proportion of the time do we make an error of Type I for a
+    right-tailed test?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Part B: Proportion of Time we make a Type 1 error for right-tailed test ##}
+\hldef{(type1.proportion.right} \hlkwb{<-} \hldef{rightcount}\hlopt{/}\hldef{n.simulations)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.0797 0.0310 0.0502
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+    \item What proportion of the time do we make an error of Type I for a
+    two-tailed test?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Part C: Proportion of Time we make a Type 1 error for two-tailed test ##}
+\hldef{(type1.proportion.dual} \hlkwb{<-} \hldef{dualcount}\hlopt{/}\hldef{n.simulations)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.0599 0.0579 0.0509
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+    \item How does skewness of the underlying population distribution effect
+    Type I error across the test types?
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{## Part D: Skewness of underlying population distribution effect Type 1 across test types? ##}
+\hldef{distribution.results} \hlkwb{<-} \hlkwd{tibble}\hldef{(}
+  \hlkwc{Distribution} \hldef{=} \hlkwd{c}\hldef{(}\hlsng{"Beta(10,2)"}\hldef{,} \hlsng{"Beta(2,10)"}\hldef{,} \hlsng{"Beta(10,10)"}\hldef{),}
+  \hlkwc{`Left-Tailed Test`} \hldef{= type1.proportion.left,}
+  \hlkwc{`Right-Tailed Test`} \hldef{= type1.proportion.right,}
+  \hlkwc{`Two-Tailed Test`} \hldef{= type1.proportion.dual}
+\hldef{)}
+\hlkwd{library}\hldef{(xtable)}
+\hldef{table} \hlkwb{<-} \hlkwd{xtable}\hldef{(distribution.results,}
+                \hlkwc{caption} \hldef{=} \hlsng{"Type 1 Error Comparison Across Tests"}\hldef{,}
+                \hlkwc{label} \hldef{=} \hlsng{"tab:distresults"}\hldef{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Mon Apr 21 20:43:25 2025
+\begin{table}[H]
+\centering
+\begingroup\small
+\begin{tabular}{lrrr}
+  \hline
+Distribution & Left-Tailed Test & Right-Tailed Test & Two-Tailed Test \\ 
+  \hline
+Beta(10,2) & 0.03 & 0.08 & 0.06 \\ 
+  Beta(2,10) & 0.07 & 0.03 & 0.06 \\ 
+  Beta(10,10) & 0.05 & 0.05 & 0.05 \\ 
+   \hline
+\end{tabular}
+\endgroup
+\caption{Type 1 Error Comparison Across Tests} 
+\label{tab:distresults}
+\end{table}
+
+  \end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{enumerate}
+\bibliography{bibliography}
+\end{document}

@@ -37,7 +37,9 @@ a <- 0
 b <- 4.0 
 mu0 <- 0
 n.simulations <- 1000
-type1.count <- 0 
+type1.count.20 <- 0 
+type1.count.30 <- 0
+no.type1 <- 0
 
 for (i in 1:n.simulations){
   simulations <- rlaplace(n = 30, location = a, scale = b)
@@ -49,7 +51,7 @@ for (i in 1:n.simulations){
               alternative = "greater")
   
   if (t$p.value < 0.05){
-    type1.count <- type1.count + 1
+    type1.count.20 <- type1.count.20 + 1
   }else{
     
     # 30 months
@@ -57,12 +59,32 @@ for (i in 1:n.simulations){
                   mu = mu0,
                   alternative = "greater")
     if (t.2$p.value < 0.05){
-      type1.count <- type1.count + 1
+      type1.count.30 <- type1.count.30 + 1
+    } else {
+      no.type1 <- no.type1 + 1
     }
   }
 }
+proportion.20 <- type1.count.20/n.simulations
+proportion.30 <- type1.count.30/n.simulations
+no.type1.error <- no.type1/n.simulations
+type1.error <- (type1.count.20 + type1.count.30)/n.simulations
 
-type1.error <- type1.count/n.simulations
+type1.error.results <- tibble(
+  Result = c("Type 1 Error Proportion (20)", 
+             "Fail to reject null at time 20, Discernible support Ha at time 30",
+             "No Type 1 Error Proportion (30)",
+             "Overall Type 1 Error"
+             ),
+  Proportion = c(proportion.20,
+                 proportion.30,
+                 no.type1.error,
+                 type1.error)
+)
+library(xtable)
+table1 <- xtable(type1.error.results, 
+                 caption = "Type 1 Error Proportions", 
+                 label = "tab:type1error")
 
 # A type 1 error is when when we incorrectly find statistically discernible 
 # support for the alternative hypothesis. This means that the null hypothesis 
@@ -143,91 +165,6 @@ for (i in 1:n.simulations){
   dual3 <- t.test(beta3,
                    mu = true.mean3,
                    alternative = "two.sided")
-  
-  # Type 1 Error Count
-  dualcount[1] <- dualcount[1] + (dual1$p.value < 0.05)
-  dualcount[2] <- dualcount[2] + (dual2$p.value < 0.05)
-  dualcount[3] <- dualcount[3] + (dual3$p.value < 0.05)
-  
-}
-
-## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##
-type1.proportion.left <- leftcount/n.simulations
-
-## Part B: Proportion of Time we make a Type 1 error for right-tailed test ##
-type1.proportion.right <- rightcount/n.simulations
-
-## Part C: Proportion of Time we make a Type 1 error for two-tailed test ##
-type1.proportion.dual <- dualcount/n.simulations
-
-####################################################################
-# Question 2
-####################################################################
-
-# preform simulation study for assessment of robustness of T test
-n <- 15
-n.simulations <- 10000
-# Beta (10,2)
-true.mean1 <- 10/(10+2)
-# Beta (2,10)
-true.mean2 <- 2/(2+10)
-# Beta (10,10)
-true.mean3 <- 10/(10+10)
-
-# Counters
-leftcount <- c(0,0,0)
-rightcount <- c(0,0,0)
-dualcount <- c(0,0,0)
-
-for (i in 1:n.simulations){
-  beta1 <- rbeta(n, 10, 2)
-  beta2 <- rbeta(n, 2, 10)
-  beta3 <- rbeta(n, 10, 10)
-  
-  # Left-Tailed Test
-  left1 <- t.test(beta1,
-                  mu = true.mean1,
-                  alternative = "less")
-  left2 <- t.test(beta2,
-                  mu = true.mean2,
-                  alternative = "less")
-  left3 <- t.test(beta3,
-                  mu = true.mean3,
-                  alternative = "less")
-  
-  # Type 1 Error Count
-  leftcount[1] <- leftcount[1] + (left1$p.value < 0.05)
-  leftcount[2] <- leftcount[2] + (left2$p.value < 0.05)
-  leftcount[3] <- leftcount[3] + (left3$p.value < 0.05)
-  
-  
-  # Right-Tailed Test
-  right1 <- t.test(beta1,
-                   mu = true.mean1,
-                   alternative = "greater")
-  right2 <- t.test(beta2,
-                   mu = true.mean2,
-                   alternative = "greater")
-  right3 <- t.test(beta3,
-                   mu = true.mean3,
-                   alternative = "greater")
-  
-  # Type 1 Error Count
-  rightcount[1] <- rightcount[1] + (right1$p.value < 0.05)
-  rightcount[2] <- rightcount[2] + (right2$p.value < 0.05)
-  rightcount[3] <- rightcount[3] + (right3$p.value < 0.05)
-  
-  
-  # Two-Tailed Test
-  dual1 <- t.test(beta1,
-                  mu = true.mean1,
-                  alternative = "two.sided")
-  dual2 <- t.test(beta2,
-                  mu = true.mean2,
-                  alternative = "two.sided")
-  dual3 <- t.test(beta3,
-                  mu = true.mean3,
-                  alternative = "two.sided")
   
   # Type 1 Error Count
   dualcount[1] <- dualcount[1] + (dual1$p.value < 0.05)
