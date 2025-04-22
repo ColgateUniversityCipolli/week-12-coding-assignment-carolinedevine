@@ -189,7 +189,7 @@ For statistically discernible support of the alternative hypothesis, we would ne
 \end{kframe}
 \end{knitrout}
 % latex table generated in R 4.4.2 by xtable 1.8-4 package
-% Mon Apr 21 20:43:23 2025
+% Mon Apr 21 20:58:22 2025
 \begin{table}[H]
 \centering
 \begingroup\small
@@ -197,10 +197,10 @@ For statistically discernible support of the alternative hypothesis, we would ne
   \hline
 Result & Proportion \\ 
   \hline
-Type 1 Error Proportion (20) & 0.05 \\ 
-  Fail to reject null at time 20, Discernible support Ha at time 30 & 0.03 \\ 
-  No Type 1 Error Proportion (30) & 0.92 \\ 
-  Overall Type 1 Error & 0.08 \\ 
+Type 1 Error Proportion (20) & 0.06 \\ 
+  Fail to reject null at time 20, Discernible support Ha at time 30 & 0.04 \\ 
+  No Type 1 Error Proportion (30) & 0.91 \\ 
+  Overall Type 1 Error & 0.09 \\ 
    \hline
 \end{tabular}
 \endgroup
@@ -304,46 +304,49 @@ We also found that in 92.9\% of the simulations, there is not a Type 1 Error. Th
   \begin{enumerate}
     \item What proportion of the time do we make an error of Type I for a
     left-tailed test?
-
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##}
-\hldef{(type1.proportion.left} \hlkwb{<-} \hldef{leftcount}\hlopt{/}\hldef{n.simulations)}
+\hldef{type1.proportion.left} \hlkwb{<-} \hldef{leftcount}\hlopt{/}\hldef{n.simulations}
+\hldef{(}\hlkwd{round}\hldef{(type1.proportion.left,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0273 0.0735 0.0507
+## [1] 0.0300 0.0748 0.0494
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
+We make a Type 1 Error for the left-tailed test 3.07\% (Beta(10,2)), 7.91\% (Beta(2,10)), and 4.8\% (Beta(10,10)) of the time.
     \item What proportion of the time do we make an error of Type I for a
     right-tailed test?
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{## Part B: Proportion of Time we make a Type 1 error for right-tailed test ##}
-\hldef{(type1.proportion.right} \hlkwb{<-} \hldef{rightcount}\hlopt{/}\hldef{n.simulations)}
+\hldef{type1.proportion.right} \hlkwb{<-} \hldef{rightcount}\hlopt{/}\hldef{n.simulations}
+\hldef{(}\hlkwd{round}\hldef{(type1.proportion.right,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0797 0.0310 0.0502
+## [1] 0.0863 0.0310 0.0479
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
+We make a Type 1 Error for the right-tailed test 8.92\% (Beta(10,2)), 2.75\% (Beta(2,10)), and 4.8\% (Beta(10,10)) of the time.
     \item What proportion of the time do we make an error of Type I for a
     two-tailed test?
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{## Part C: Proportion of Time we make a Type 1 error for two-tailed test ##}
-\hldef{(type1.proportion.dual} \hlkwb{<-} \hldef{dualcount}\hlopt{/}\hldef{n.simulations)}
+\hldef{type1.proportion.dual} \hlkwb{<-} \hldef{dualcount}\hlopt{/}\hldef{n.simulations}
+\hldef{(}\hlkwd{round}\hldef{(type1.proportion.dual,} \hlnum{4}\hldef{))}
 \end{alltt}
 \begin{verbatim}
-## [1] 0.0599 0.0579 0.0509
+## [1] 0.0652 0.0575 0.0499
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
+We make a Type 1 Error for the two-tailed test 6.63\% (Beta(10,2)), 6.03\% (Beta(2,10)), and 5.03\% (Beta(10,10)) of the time.
     \item How does skewness of the underlying population distribution effect
     Type I error across the test types?
 \begin{knitrout}
@@ -364,7 +367,7 @@ We also found that in 92.9\% of the simulations, there is not a Type 1 Error. Th
 \end{kframe}
 \end{knitrout}
 % latex table generated in R 4.4.2 by xtable 1.8-4 package
-% Mon Apr 21 20:43:25 2025
+% Mon Apr 21 20:58:25 2025
 \begin{table}[H]
 \centering
 \begingroup\small
@@ -372,7 +375,7 @@ We also found that in 92.9\% of the simulations, there is not a Type 1 Error. Th
   \hline
 Distribution & Left-Tailed Test & Right-Tailed Test & Two-Tailed Test \\ 
   \hline
-Beta(10,2) & 0.03 & 0.08 & 0.06 \\ 
+Beta(10,2) & 0.03 & 0.09 & 0.07 \\ 
   Beta(2,10) & 0.07 & 0.03 & 0.06 \\ 
   Beta(10,10) & 0.05 & 0.05 & 0.05 \\ 
    \hline
@@ -382,6 +385,10 @@ Beta(10,2) & 0.03 & 0.08 & 0.06 \\
 \label{tab:distresults}
 \end{table}
 
+Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. 
+Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. 
+Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. 
+Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
   \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

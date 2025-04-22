@@ -221,25 +221,29 @@ for (i in 1:n.simulations){
   \begin{enumerate}
     \item What proportion of the time do we make an error of Type I for a
     left-tailed test?
-
 <<echo=TRUE, message=FALSE, warning=FALSE>>= 
 ## Part A: Proportion of Time we make a Type 1 error for left-tailed test ##
-(type1.proportion.left <- leftcount/n.simulations)
+type1.proportion.left <- leftcount/n.simulations
+(round(type1.proportion.left, 4))
 @
-
+We make a Type 1 Error for the left-tailed test 3.07\% (Beta(10,2)), 7.91\% (Beta(2,10)), and 4.8\% (Beta(10,10)) of the time.
     \item What proportion of the time do we make an error of Type I for a
     right-tailed test?
 <<echo=TRUE, message=FALSE, warning=FALSE>>= 
 ## Part B: Proportion of Time we make a Type 1 error for right-tailed test ##
-(type1.proportion.right <- rightcount/n.simulations)
+type1.proportion.right <- rightcount/n.simulations
+(round(type1.proportion.right, 4))
+
 @
+We make a Type 1 Error for the right-tailed test 8.92\% (Beta(10,2)), 2.75\% (Beta(2,10)), and 4.8\% (Beta(10,10)) of the time.
     \item What proportion of the time do we make an error of Type I for a
     two-tailed test?
 <<echo=TRUE, message=FALSE, warning=FALSE>>= 
 ## Part C: Proportion of Time we make a Type 1 error for two-tailed test ##
-(type1.proportion.dual <- dualcount/n.simulations)
+type1.proportion.dual <- dualcount/n.simulations
+(round(type1.proportion.dual, 4))
 @
-
+We make a Type 1 Error for the two-tailed test 6.63\% (Beta(10,2)), 6.03\% (Beta(2,10)), and 5.03\% (Beta(10,10)) of the time.
     \item How does skewness of the underlying population distribution effect
     Type I error across the test types?
 <<echo=TRUE, message=FALSE, warning=FALSE>>= 
@@ -262,6 +266,10 @@ print(table,
       size = "small", 
       caption.placement = "bottom")
 @
+Table 2 shows the three distributions and the differences in the tests cases for the Type 1 proportions. 
+Beta(10,2) is left-skewed which results in the left-tailed test rejecting the null less often than 5\%; the right-tailed test rejects more often, and the two-tailed test is slightly inflated. 
+Beta(2,10) is right-skewed which results in the left-tailed test rejecting the null more often than 5\%; the right-tailed test rejects less often, and the two-tailed test is slightly inflated. 
+Beta(10,10) is symmetric which results in the all of the tests being close to 5\%. 
   \end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
